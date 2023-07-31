@@ -1,0 +1,107 @@
+﻿@model ML.Paciente
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Pacientes</h2>
+            <p>Ingresa la informacion solicitada</p>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Form", "Paciente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+     {
+        @Html.LabelFor(model => model.IdPaciente, new {@class="control-label col-md-2 hidden" })
+        @Html.TextBoxFor(model => model.IdPaciente, new {@class="form-control hidden", @readonly = true})
+        @Html.ValidationMessageFor(model => model.IdPaciente)
+
+            <div class="row">
+                <h4>Datos Personales del Paciente</h4>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Nombre, new {@class="control-label col-md-2"})
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.AP, new { @class = "control-label col-md-2" })
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(model => model.AP, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AP)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.AM, new { @class = "control-label col-md-2" })
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(model => model.AM, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AM)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                        @Html.LabelFor(model => model.Sexo, new { @class = "control-label col-md-2" })
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            @Html.TextBoxFor(model => model.Sexo, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Sexo)
+                        </div>
+                </div>
+                </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.FechaNacimiento, new { @class = "control-label col-md-2" })
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-heart-empty"></i></span>
+                        @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FechaNacimiento)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.FechaIngreso, new { @class = "control-label col-md-2" })
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-folder-open"></i></span>
+                        @Html.TextBoxFor(model => model.FechaIngreso, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.FechaIngreso)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.Sintomas, new { @class = "control-label col-md-2" })
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
+                        @Html.TextBoxFor(model => model.Sintomas, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sintomas)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.TipoSangre, new { @class = "control-label col-md-2" })
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                        @Html.DropDownListFor(model => model.TipoSangre.IdTipoSangre, new SelectList(Model.TipoSangre.TiposSangre, "IdTipoSangre", "Nombre"), "Selecciona una opcion", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TipoSangre.IdTipoSangre)
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="submit" value="@ViewBag.Titulo" class="btn btn-success" />
+                    @Html.ActionLink("Regresar", "GetAll", "Paciente", htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+
+     }
+</div>
